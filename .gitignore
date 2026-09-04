@@ -1,0 +1,52 @@
+# LaTeX build output
+*.pdf
+
+# ...but source figures are tracked
+!**/figures/*.pdf
+
+# Core auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.lof
+*.lot
+
+# latexmk
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.synctex(busy)
+
+# Bibliography
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.brf
+
+# Index / glossary / nomenclature
+*.idx
+*.ilg
+*.ind
+*.glo
+*.gls
+*.glg
+*.nlo
+*.nls
+
+# beamer / hyperref / misc
+*.nav
+*.snm
+*.vrb
+*.xdv
+*.dvi
+*.figlist
+*.makefile
+*.auxlock
+
+# Editors and OS
+.DS_Store
+*.swp
+*~
+.vscode/

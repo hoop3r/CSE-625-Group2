@@ -1,0 +1,61 @@
+\documentclass[11pt]{article}
+
+% --- Encoding and fonts ---
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+% --- Layout ---
+\usepackage[margin=1in]{geometry}
+\usepackage{microtype}
+
+% --- Math ---
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% --- Figures ---
+\usepackage{graphicx}
+\graphicspath{{figures/}}
+\usepackage{booktabs}
+
+% --- Bibliography ---
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\addbibresource{bibliography.bib}
+
+% --- Links ---
+\usepackage[hidelinks]{hyperref}
+\usepackage{cleveref}
+
+\title{}
+\author{}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\input{sections/00_abstract}
+\input{sections/01_introduction}
+\input{sections/02_background}
+\input{sections/03_allocator_versions}
+\input{sections/04_methodology}
+\input{sections/05_environments}
+\input{sections/06_workloads}
+\input{sections/07_statistical_results}
+\input{sections/08_charts_comparisons}
+\input{sections/09_hardware_os_discussion}
+\input{sections/10_improved_design}
+\input{sections/11_improved_results}
+\input{sections/12_readme_questions}
+\input{sections/13_threats_to_validity}
+\input{sections/14_reproducibility}
+\input{sections/15_conclusions}
+\input{sections/16_contributions}
+
+% --- References ---
+\printbibliography
+
+% --- Appendices ---
+\input{sections/17_appendices}
+
+\end{document}
