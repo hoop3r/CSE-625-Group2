@@ -1,26 +1,34 @@
 #!/usr/bin/env bash
+
+VERSION=$1
+if [ -z "$VERSION" ]; then
+    echo "Error: Please specify a version tag (e.g., V1, V2, V3)."
+    echo "Usage: nohup $0 <version> &"
+    exit 1
+fi
+
 CurrentTime=$(date +"%Y-%m-%d_%H-%M-%S")
 
 OUTFILE="results_$CurrentTime.csv"
 echo "Program,Arg1,Arg2,Time,UserTime,SysTime,CPU,PeakMemoryKB,MajorFaults,MinorFaults,VoluntaryCS,InvoluntaryCS" > $OUTFILE
 
-MATRIXPROGRAMS=("build-CMA-V1/regular_new" 
-"build-CMA-V1/overloaded_new"
+MATRIXPROGRAMS=("build-CMA-${VERSION}/regular_new" 
+"build-CMA-${VERSION}/overloaded_new"
 )
 
 MEMORYSTRESSPROGRAMS=(
-"build-CMA-V1/regular_memory_stress"
-"build-CMA-V1/overloaded_memory_stress"
+"build-CMA-${VERSION}/regular_memory_stress"
+"build-CMA-${VERSION}/ove rloaded_memory_stress"
 )
 
 UNIFORMNODEPROGRAMS=(
-"build-CMA-V1/regular_uniform_nodes"
-"build-CMA-V1/overloaded_uniform_nodes"
+"build-CMA-${VERSION}/regular_uniform_nodes"
+"build-CMA-${VERSION}/overloaded_uniform_nodes"
 )
 
 LINKEDLISTPROGRAMS=(
-"build-CMA-V1/regular_linked_list"
-"build-CMA-V1/overloaded_linked_list"
+"build-CMA-${VERSION}/regular_linked_list"
+"build-CMA-${VERSION}/overloaded_linked_list"
 )
 
 if [[ "$OSTYPE" == "darwin"* ]]; then TIMEBINARY="gtime"; else TIMEBINARY="/usr/bin/time"; fi

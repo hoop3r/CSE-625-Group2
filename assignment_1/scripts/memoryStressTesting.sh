@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
+
+VERSION=$1
+if [ -z "$VERSION" ]; then
+    echo "Error: Please specify a version tag (e.g., V1, V2, V3)."
+    echo "Usage: nohup $0 <version> &"
+    exit 1
+fi
+
 CurrentTime=$(date +"%Y-%m-%d_%H-%M-%S")
 
 OUTFILE="memory_stress_results_$CurrentTime.csv"
 echo "Program,Arg1,Arg2,Time,UserTime,SysTime,CPU,PeakMemoryKB,MajorFaults,MinorFaults,VoluntaryCS,InvoluntaryCS" > $OUTFILE
 
 MEMORYSTRESSPROGRAMS=(
-"build-CMA-V2/regular_memory_stress"
-"build-CMA-V2/overloaded_memory_stress"
+"build-CMA-${VERSION}/regular_memory_stress"
+"build-CMA-${VERSION}/overloaded_memory_stress"
 )
 
 if [[ "$OSTYPE" == "darwin"* ]]; then TIMEBINARY="gtime"; else TIMEBINARY="/usr/bin/time"; fi

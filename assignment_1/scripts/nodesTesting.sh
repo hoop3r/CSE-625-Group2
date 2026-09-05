@@ -1,12 +1,20 @@
 #!/usr/bin/env bash
+
+VERSION=$1
+if [ -z "$VERSION" ]; then
+    echo "Error: Please specify a version tag (e.g., V1, V2, V3)."
+    echo "Usage: nohup $0 <version> &"
+    exit 1
+fi
+
 CurrentTime=$(date +"%Y-%m-%d_%H-%M-%S")
 
 OUTFILE="nodes_results_$CurrentTime.csv"
 echo "Program,Arg1,Arg2,Time,UserTime,SysTime,CPU,PeakMemoryKB,MajorFaults,MinorFaults,VoluntaryCS,InvoluntaryCS" > $OUTFILE
 
 UNIFORMNODEPROGRAMS=(
-"build-CMA-V2/regular_uniform_nodes"
-"build-CMA-V2/overloaded_uniform_nodes"
+"build-CMA-${VERSION}/regular_uniform_nodes"
+"build-CMA-${VERSION}/overloaded_uniform_nodes"
 )
 
 if [[ "$OSTYPE" == "darwin"* ]]; then TIMEBINARY="gtime"; else TIMEBINARY="/usr/bin/time"; fi

@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
+
+VERSION=$1
+if [ -z "$VERSION" ]; then
+    echo "Error: Please specify a version tag (e.g., V1, V2, V3)."
+    echo "Usage: nohup $0 <version> &"
+    exit 1
+fi
+
 CurrentTime=$(date +"%Y-%m-%d_%H-%M-%S")
 
 OUTFILE="linked_list_results_$CurrentTime.csv"
@@ -6,8 +14,8 @@ echo "Program,Arg1,Arg2,Time,UserTime,SysTime,CPU,PeakMemoryKB,MajorFaults,Minor
 
 
 LINKEDLISTPROGRAMS=(
-"build-CMA-V2/regular_linked_list"
-"build-CMA-V2/overloaded_linked_list"
+"build-CMA-${VERSION}/regular_linked_list"
+"build-CMA-${VERSION}/overloaded_linked_list"
 )
 
 if [[ "$OSTYPE" == "darwin"* ]]; then TIMEBINARY="gtime"; else TIMEBINARY="/usr/bin/time"; fi
