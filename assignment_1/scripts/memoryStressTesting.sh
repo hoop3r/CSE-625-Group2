@@ -9,6 +9,8 @@ MEMORYSTRESSPROGRAMS=(
 "build-CMA-V2/overloaded_memory_stress"
 )
 
+if [[ "$OSTYPE" == "darwin"* ]]; then TIMEBINARY="gtime"; else TIMEBINARY="/usr/bin/time"; fi
+
 for prog in "${MEMORYSTRESSPROGRAMS[@]}"; do
     echo "Running $prog..."
 
@@ -18,7 +20,7 @@ for prog in "${MEMORYSTRESSPROGRAMS[@]}"; do
 
             # --- TIME -v ---
             TIMELOG=$(mktemp)
-            /usr/bin/time -v "$prog" "$arg" 1>/dev/null 2>"$TIMELOG"
+            $TIMEBINARY -v "$prog" "$arg" 1>/dev/null 2>"$TIMELOG"
 
             elapsed=$(grep "Elapsed (wall clock) time" "$TIMELOG" | awk '{print $8}')
             user=$(grep "User time" "$TIMELOG" | awk '{print $4}')
